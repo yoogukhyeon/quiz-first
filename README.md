@@ -1,27 +1,4 @@
-next.js 보일러 플레이트 
-
-## next.js typescript styled-components mysql2 serverless-mysql 셋팅 
-
-```
-npm i @types/mysql
-npm i mysql2
-npm i serverless-mysql
-npm i styled-reset
-npm i styled-components
-npm i @types/styled-components
-npm i babel-plugin-styled-components
-```
-## next.js 서버리스 람다 테스트  
-```
-GET: http://localhost:3000/api/hello API 테스트 
-```
-
-## 개발블로그에 정리 
-[http://localhost:3000](http://localhost:3000)
-
-
 ## Getting Started
-
 
 First, run the development server:
 
@@ -47,8 +24,8 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+-   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+-   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
