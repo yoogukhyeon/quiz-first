@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+net.js 보일러 플레이트 
 
 ## next.js typescript styled-components mysql2 serverless-mysql 셋팅 
 
