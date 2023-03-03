@@ -22,6 +22,7 @@ GET: http://localhost:3000/api/hello API 테스트
 
 ## Getting Started
 
+
 First, run the development server:
 
 ```bash
