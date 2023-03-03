@@ -11,10 +11,13 @@ npm i styled-components
 npm i @types/styled-components
 npm i babel-plugin-styled-components
 ```
-
+## next.js 서버리스 람다 테스트  
 ```
 GET: http://localhost:3000/api/hello API 테스트 
 ```
+
+## 개발블로그에 정리 
+[http://localhost:3000](http://localhost:3000)
 
 ## Getting Started
 
