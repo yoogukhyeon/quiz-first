@@ -1,4 +1,4 @@
-net.js 보일러 플레이트 
+next.js 보일러 플레이트 
 
 ## next.js typescript styled-components mysql2 serverless-mysql 셋팅 
 
