@@ -1,5 +1,21 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## next.js typescript styled-components mysql2 serverless-mysql 셋팅 
+
+```
+npm i @types/mysql
+npm i mysql2
+npm i serverless-mysql
+npm i styled-reset
+npm i styled-components
+npm i @types/styled-components
+npm i babel-plugin-styled-components
+```
+
+```
+GET: http://localhost:3000/api/hello API 테스트 
+```
+
 ## Getting Started
 
 First, run the development server:
