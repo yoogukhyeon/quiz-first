@@ -3,7 +3,7 @@ import { mainExcuteQuery } from '@/config/db';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 interface Data {
-	hello: string;
+	message: string;
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
@@ -11,9 +11,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
 	switch (method) {
 		case 'GET':
-			res.status(200).json({ hello: 'hello' });
+			res.status(200).json({ message: 'hello' });
 			break;
 		default:
-			res.status(404).json({});
+			res.status(404).json({message: "api"});
 	}
 }
