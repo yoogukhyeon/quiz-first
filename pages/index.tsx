@@ -1,14 +1,31 @@
 import Main from '@/components/layouts/Main';
+import { GetServerSidePropsContext } from 'next';
 import styled from 'styled-components';
+import { useRouter } from 'next/router';
 import { IoArrowForward, IoLink } from 'react-icons/io5';
-export default function Home() {
+import { clipboard } from '@/utils/clipboard';
+import { ButtonCommon } from '@/styles/common';
+
+interface IProps {
+	refUrl: string | null;
+}
+
+export default function Home({ refUrl }: IProps) {
+	const router = useRouter();
+
 	const goToStart = () => {
 		alert('시작합니다.');
+		router.push(`/quiz?ref=${refUrl}`, '/quiz');
+	};
+
+	const copyUrl = () => {
+		const url = window.document.location.href;
+		const copy = clipboard(url);
 	};
 	return (
 		<>
 			<Main>
-				<MbtiWrap>
+				<ContentWrap>
 					<div className="content">
 						<h1>
 							나의 지식
@@ -39,7 +56,7 @@ export default function Home() {
 							</button>
 						</div>
 						<div className="link">
-							<span>
+							<span onClick={copyUrl}>
 								<i>
 									<IoLink />
 								</i>
@@ -47,13 +64,21 @@ export default function Home() {
 						</div>
 					</div>
 					<div className="copyright">© Made In YOO GUK HYEON.</div>
-				</MbtiWrap>
+				</ContentWrap>
 			</Main>
 		</>
 	);
 }
 
-const MbtiWrap = styled.div`
+export const getServerSideProps = async ({ req }: GetServerSidePropsContext) => {
+	let { referer } = req.headers;
+	const refUrl: string | null = referer ? referer : null;
+	return {
+		props: { refUrl },
+	};
+};
+
+const ContentWrap = styled.div`
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
@@ -132,18 +157,7 @@ const MbtiWrap = styled.div`
 		}
 
 		button {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			width: 100%;
-			height: 75px;
-			margin: 20px 3px;
-			border-radius: 7px;
-			padding: 5px 25px;
-			color: #fff;
-			background-color: #09a334;
-			font-size: 22px;
-			font-weight: 600;
+			${ButtonCommon}
 		}
 
 		.link {
