@@ -1,14 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const Top = () => {
+interface IProps {
+	total: number;
+	score: number;
+	number: number;
+}
+
+export const Top = ({ total, score, number }: IProps) => {
 	return (
 		<TopWrap>
 			<div className="header">
 				<h2>QUIZ - 나의 지식 수준은?</h2>
 				<div>
-					<p>2 / 10</p>
-					<p>score: 0</p>
+					<p>
+						{number + 1} / {total}
+					</p>
+					<p>score: {score}</p>
 				</div>
 			</div>
 		</TopWrap>

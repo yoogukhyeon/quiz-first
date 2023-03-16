@@ -20,7 +20,7 @@ export default function Home({ refUrl }: IProps) {
 
 	const copyUrl = () => {
 		const url = window.document.location.href;
-		const copy = clipboard(url);
+		clipboard(url);
 	};
 	return (
 		<>

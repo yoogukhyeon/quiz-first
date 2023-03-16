@@ -2,51 +2,62 @@ import React from 'react';
 import styled from 'styled-components';
 import { IoArrowForward } from 'react-icons/io5';
 import { ButtonCommon } from '@/styles/common';
-export default function QuizeList() {
+import { QuestionState } from '@/pages/quiz';
+import { UserChk } from '@/pages/quiz';
+import { useRouter } from 'next/router';
+interface QuizList {
+	quizList: QuestionState;
+	number: number;
+	onClickAnswer: (e: React.MouseEvent<HTMLInputElement>) => void;
+	userChk: UserChk | undefined;
+	onClickNext: React.MouseEventHandler<HTMLDivElement>;
+	over: boolean;
+	stepNext: boolean;
+	score: number;
+}
+
+export default function QuizeList({ quizList, number, onClickAnswer, onClickNext, userChk, over, stepNext, score }: QuizList) {
+	const router = useRouter();
+
+	const goToResult = () => {
+		router.push(`/result?score=${score}`);
+	};
+
 	return (
 		<QuizWrap>
 			<p>
-				<span>01.</span> 한국에 수도는?
+				<span>{number + 1}.</span> {quizList?.question}
 			</p>
 			<InputWrap>
-				<div>
-					<input type="radio" name="answer" id="answer" />
-					<label htmlFor="answer"></label>
-				</div>
-
-				<div>
-					<input type="radio" name="answer" id="answer2" />
-					<label htmlFor="answer2"></label>
-				</div>
-
-				<div>
-					<input type="radio" name="answer" id="answer3" />
-					<label htmlFor="answer3"></label>
-				</div>
-
-				<div>
-					<input type="radio" name="answer" id="answer4" />
-					<label htmlFor="answer4"></label>
-				</div>
-
-				<div>
-					<input type="radio" name="answer" id="answer5" />
-					<label htmlFor="answer5"></label>
-				</div>
+				{quizList?.answer?.map((val) => (
+					<div key={val}>
+						<input disabled={!!userChk} type="radio" name="answer" id={val} value={val} onClick={onClickAnswer} />
+						<Label
+							htmlFor={val}
+							dangerouslySetInnerHTML={{ __html: val }}
+							userClick={userChk?.answer === val}
+							correct={userChk?.correctAnswer === val}
+						></Label>
+					</div>
+				))}
 			</InputWrap>
+			{!over && stepNext && (
+				<div className="button" onClick={onClickNext}>
+					다음
+					<i>
+						<IoArrowForward />
+					</i>
+				</div>
+			)}
 
-			<div className="button">
-				다음
-				<i>
-					<IoArrowForward />
-				</i>
-			</div>
-			<div className="button">
-				결과보기
-				<i>
-					<IoArrowForward />
-				</i>
-			</div>
+			{over && (
+				<div className="button" onClick={goToResult}>
+					결과보기
+					<i>
+						<IoArrowForward />
+					</i>
+				</div>
+			)}
 		</QuizWrap>
 	);
 }
@@ -60,15 +71,16 @@ const QuizWrap = styled.div`
 
 	p {
 		position: relative;
-		font-size: 24px;
+		font-size: 22px;
+		line-height: 28px;
 		margin: 30px 0;
 		font-weight: 600;
-		word-break: keep-all;
-		padding-left: 40px;
+		word-break: break-word;
+		padding-left: 27px;
 
 		span {
 			position: absolute;
-			top: 0;
+			top: 3px;
 			left: 0;
 		}
 	}
@@ -95,27 +107,36 @@ const InputWrap = styled.div`
 			margin-top: 0;
 		}
 
-		label {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			width: 100%;
-			height: 70px;
-			padding: 0 20px;
-			word-break: keep-all;
-			color: #686868;
-			background: #ececec;
-			border-radius: 10px;
-			text-align: center;
-			font-size: 28px;
-			line-height: 34px;
-			font-weight: 600;
-			cursor: pointer;
-		}
-
 		input:checked + label {
 			background-color: #09a334;
 			color: #fff;
 		}
+	}
+`;
+
+interface Correct {
+	correct: boolean;
+	userClick: boolean;
+}
+
+const Label = styled.label<Correct>`
+	& {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		height: 70px;
+		padding: 0 20px;
+		word-break: keep-all;
+		color: #686868;
+		background: ${({ correct, userClick }) =>
+			correct ? 'linear-gradient(90deg, #15f37d, #3dc47a)' : !correct && userClick ? 'linear-gradient(90deg, #e93232, #b95c5c)' : '#ececec'};
+		/* opacity: ${({ correct, userClick }) => (correct ? '1' : !correct && userClick ? '0.5' : '1')}; */
+		border-radius: 10px;
+		text-align: center;
+		font-size: 20px;
+		line-height: 26px;
+		font-weight: 600;
+		cursor: pointer;
 	}
 `;

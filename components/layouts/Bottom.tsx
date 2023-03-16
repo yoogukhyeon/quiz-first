@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
-export const Bottom = () => {
+
+interface IProps {
+	progress: number;
+}
+
+export const Bottom = ({ progress }: IProps) => {
 	return (
 		<BottomWrap>
 			<div className="progress">
 				<div>
-					<span style={{ width: '10%' }}></span>
+					<span style={{ width: `${progress}%` }}></span>
 				</div>
-				<p>10%</p>
+				<p>{progress}%</p>
 			</div>
 		</BottomWrap>
 	);

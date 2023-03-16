@@ -13,4 +13,5 @@ export const ButtonCommon = css`
 	background-color: #09a334;
 	font-size: 22px;
 	font-weight: 600;
+	cursor: pointer;
 `;
