@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { mainExcuteQuery } from "@/config/db";
 import { Data } from "./types";
-import moment from "moment";
 
 /**
  * @swagger
@@ -96,14 +95,15 @@ const getList = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 			a.qa_no as qaNo,
 			a.qq_no as qaqNo,
 			a.qa_answer as aAnswer,
-			c.qc_correct as qcCorrect
+			case when c.qc_correct is null then null else a.qa_answer end as qcCorrect 
 		from quiz_question q
 		inner join quiz_answer a
 		on a.qq_no = q.qq_no
-		inner join quiz_correct c
-		on a.qq_no = c.qq_no
+    left join quiz_correct c 
+    on a.qa_no =  c.qc_correct
 		where 1 = 1
-		and q.q_no = 1 `;
+		and q.q_no = 1 
+    order by q.qq_no asc, a.qa_no desc `;
 
     const values: string[] = [""];
     const quiz: any = await mainExcuteQuery({ query, values });
@@ -129,7 +129,7 @@ const getList = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
         const questionObj = {
           questionNo: quiz[i - 1].qqNo,
           question: quiz[i - 1].qqTitle,
-          correct_answer: quiz[i - 1].qcCorrect,
+          correct_answer: i === quiz.length - 1 ? quiz[i].qcCorrect : quiz[i - 1].qcCorrect,
           answer,
         };
 
@@ -147,22 +147,4 @@ const getList = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   }
 };
 
-const createUser = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
-  try {
-    const { no } = req.body;
-    const now = moment();
-    const currentTime = now.format("YYYY-MM-DD HH:mm:ss");
-
-    const query: string = `insert into quiz_user(q_no, qu_reg_date) value(?, ?)`;
-    const values: string[] = [no, currentTime];
-    const result: any = await mainExcuteQuery({ query, values });
-    console.log(result);
-
-    res.status(200).json({ message: "success" });
-  } catch (err: any) {
-    console.log("Error", err);
-    return res.status(500).json({ message: err.message });
-  }
-};
-
-export { getList, createUser };
+export { getList };
