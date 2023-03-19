@@ -159,7 +159,7 @@ const ContentWrap = styled.div`
         background: #fff;
         padding: 0 3px;
         font-weight: 600;
-
+        color: rgb(9, 163, 52);
         em {
           display: block;
           margin-left: 2px;
