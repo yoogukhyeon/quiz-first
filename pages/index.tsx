@@ -6,6 +6,8 @@ import { IoArrowForward } from "react-icons/io5";
 import { clipboard } from "@/utils/clipboard";
 import { ButtonCommon } from "@/styles/common";
 import Clipboard from "@/components/common/Clipboard";
+import { useEffect, useState } from "react";
+import { quizTotal } from "@/api";
 
 interface IProps {
   refUrl: string | null;
@@ -13,6 +15,22 @@ interface IProps {
 
 export default function Home({ refUrl }: IProps) {
   const router = useRouter();
+  const [total, setTotal] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(false);
+  const api = async () => {
+    try {
+      const result = await quizTotal();
+
+      setTotal(result?.total);
+      setLoading((prev) => !prev);
+    } catch (err: any) {
+      console.error("Err", err);
+      throw new Error(err);
+    }
+  };
+  useEffect(() => {
+    api();
+  }, []);
 
   const goToStart = () => {
     alert("시작합니다.");
@@ -23,6 +41,7 @@ export default function Home({ refUrl }: IProps) {
     const url = window.document.location.href;
     clipboard(url);
   };
+
   return (
     <>
       <Main>
@@ -46,7 +65,7 @@ export default function Home({ refUrl }: IProps) {
             <div>
               <div className="testNum">
                 <b>
-                  {Number(30).toLocaleString()} <em>명 참여완료</em>
+                  {loading && total} <em>명 참여완료</em>
                 </b>
               </div>
               <button onClick={goToStart}>

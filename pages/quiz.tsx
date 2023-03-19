@@ -6,7 +6,7 @@ import { Bottom } from "@/components/layouts/Bottom";
 import { GetServerSidePropsContext } from "next";
 import QuizeList from "@/components/quiz/QuizeList";
 import { Data } from "@/mock/Data";
-
+import axios, { AxiosError, AxiosResponse } from "axios";
 export interface Question {
   category: string;
   correct_answer: string;
@@ -94,8 +94,8 @@ export default function Quiz() {
   );
 }
 
-// export const getServerSideProps = async ({ req, query, params }: GetServerSidePropsContext) => {
-// 	return {
-// 		props: {},
-// 	};
-// };
+export const getServerSideProps = async ({ req, query, params }: GetServerSidePropsContext) => {
+  return {
+    props: {},
+  };
+};
