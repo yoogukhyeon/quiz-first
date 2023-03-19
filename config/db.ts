@@ -8,11 +8,11 @@ console.log("::::::::::::::::");
 console.log("::::::::::::::::");
 const pool = mysql({
   config: {
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
+    host: "nodejs-013.cafe24.com",
+    user: "wtempleteapi",
+    password: "dkswoah589318",
     port: 3306,
-    database: process.env.DB_DATABASE,
+    database: "wtempleteapi",
   },
 });
 
