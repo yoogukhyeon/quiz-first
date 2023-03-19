@@ -1,38 +1,24 @@
 import nc from "next-connect";
-import { createUser } from "./model";
+import { getList, getUserTotal } from "./model";
 
 const handler = nc();
 
-//퀴즈 리스트 list
 /**
  * @swagger
- * /api/quiz/user:
- *   post:
+ * /api/quiz:
+ *   get:
  *     security:
  *        - basicAuth: []
  *     tags: [Quiz API]
- *     requestBody:
- *      x-name: body
- *      required: true
- *      content:
- *       application/json:
- *        schema:
- *          properties:
- *           referUrl:
- *            type: string
- *            example: https://cidermics.com
- *           no:
- *            type: number
- *            example: 2
- *     description: quiz 사용자 히스토리
- *     summary: quiz 사용자 히스토리
+ *     description: quiz 사용자 참여자 수
+ *     summary: quiz 사용자 참여자 수
  *     responses:
  *       200:
- *         description: quiz 사용자 히스토리
+ *         description: quiz 사용자 참여자 수
  *         content:
  *            application/json:
  *              schema:
- *                  $ref: '#/components/schemas/createUser'
+ *                  $ref: '#/components/schemas/getQuizUser'
  *       404:
  *        description: NotFound
  *        content:
@@ -65,7 +51,7 @@ const handler = nc();
  *     type: http
  *     scheme: basic
  *  schemas:
- *      createUser:
+ *      getQuizUser:
  *          type: object
  *          properties:
  *              message:
@@ -74,9 +60,10 @@ const handler = nc();
  *              data:
  *               type: object
  *               example: {
- *                     "id": 4,
- *                  }
+ *                   "total": 100,
+ *               }
  */
-handler.post(createUser);
+//퀴즈 리스트 list
+handler.get(getUserTotal);
 
 export default handler;
