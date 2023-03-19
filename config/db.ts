@@ -1,18 +1,12 @@
 import mysql from "serverless-mysql";
 
-console.log("::::::::::::::::");
-console.log("::::::::::::::::");
-console.log("::::::::::::::::");
-console.log("process.env.DB_HOST ::", process.env.DB_HOST);
-console.log("::::::::::::::::");
-console.log("::::::::::::::::");
 const pool = mysql({
   config: {
-    host: "nodejs-013.cafe24.com",
-    user: "wtempleteapi",
-    password: "dkswoah589318",
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
     port: 3306,
-    database: "wtempleteapi",
+    database: process.env.DB_DATABASE,
   },
 });
 
