@@ -100,7 +100,7 @@ export default function Quiz({ id = 1 }: IProps) {
 
 export const getServerSideProps = async ({ query }: GetServerSidePropsContext) => {
 	const no: number = 1;
-	const { ref } = query;
+	const ref = query?.ref ? query?.ref : null;
 
 	const id = await axios.post(
 		`${process.env.NEXT_PUBLIC_DOMAIN}/api/quiz/user`,
