@@ -116,6 +116,15 @@ export const getServerSideProps = async ({ query }: GetServerSidePropsContext) =
 		}
 	);
 
+	const quizList = await axios.get(`${process.env.NEXT_PUBLIC_DOMAIN}/api/quiz/type/${no}`, {
+		auth: {
+			username: process.env.NEXT_PUBLIC_BASIC_USERNAME!,
+			password: process.env.NEXT_PUBLIC_BASIC_PASSWORD!,
+		},
+	});
+
+	console.log('quizList :::', quizList);
+
 	if (id?.data?.message === 'success') {
 		return {
 			props: { id: id?.data?.data?.id },
