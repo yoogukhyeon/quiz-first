@@ -6,7 +6,7 @@ import { Bottom } from '@/components/layouts/Bottom';
 import { GetServerSidePropsContext } from 'next';
 import QuizeList from '@/components/quiz/QuizeList';
 import axios, { AxiosError, AxiosResponse } from 'axios';
-import { Data } from '@/mock/Data';
+
 interface QuizList {
 	questionNo: number;
 	question: string;
@@ -26,10 +26,10 @@ export interface UserChk {
 
 interface IProps {
 	id: number;
-	quizList?: QuizList[];
+	quizList: QuizList[];
 }
 
-export default function Quiz({ id = 1 }: IProps) {
+export default function Quiz({ id, quizList }: IProps) {
 	const [data, setData] = useState<QuizState[]>([]);
 	const [number, setNumber] = useState<number>(0);
 	const [score, setScore] = useState(0);
@@ -39,9 +39,9 @@ export default function Quiz({ id = 1 }: IProps) {
 	const [stepNext, setStepNext] = useState<boolean>(false);
 
 	useEffect(() => {
-		setData(Data);
-		setTotal(Data.length);
-	}, []);
+		setData(quizList);
+		setTotal(quizList.length);
+	}, [quizList]);
 
 	const onClickAnswer = (e: React.MouseEvent<HTMLInputElement>) => {
 		const answer = e.currentTarget.value;
@@ -123,11 +123,9 @@ export const getServerSideProps = async ({ query }: GetServerSidePropsContext) =
 		},
 	});
 
-	console.log('quizList :::', quizList);
-
-	if (id?.data?.message === 'success') {
+	if (id?.data?.message === 'success' && quizList?.data?.message === 'success') {
 		return {
-			props: { id: id?.data?.data?.id },
+			props: { id: id?.data?.data?.id, quizList: quizList?.data?.data },
 		};
 	}
 };
