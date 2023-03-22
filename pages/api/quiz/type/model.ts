@@ -13,14 +13,14 @@ const getList = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 			a.qq_no as qaqNo,
 			a.qa_answer as aAnswer,
 			case when c.qc_correct is null then null else a.qa_answer end as qcCorrect 
-		from quiz_question q
-		inner join quiz_answer a
-		on a.qq_no = q.qq_no
-    left join quiz_correct c 
-    on a.qa_no =  c.qc_correct
-		where 1 = 1
-		and q.q_no = ? 
-    order by q.qq_no asc, a.qa_no desc `;
+            from quiz_question q
+            inner join quiz_answer a
+            on a.qq_no = q.qq_no
+        left join quiz_correct c 
+        on a.qa_no =  c.qc_correct
+        where 1 = 1
+        and q.q_no = ? 
+        order by q.qq_no asc, a.qa_no desc `;
 
 		const values: any[] = [no];
 		const quiz: any = await mainExcuteQuery({ query, values });

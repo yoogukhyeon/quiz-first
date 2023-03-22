@@ -23,6 +23,8 @@ export default function Home({ refUrl }: IProps) {
 		setTotal(totalResult?.total);
 	}, [totalResult]);
 
+	console.log('refUrl ::', refUrl);
+
 	const goToStart = () => {
 		router.push(`/quiz?ref=${refUrl}`, '/quiz');
 	};

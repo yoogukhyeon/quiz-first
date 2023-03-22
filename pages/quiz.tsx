@@ -97,7 +97,7 @@ export default function Quiz({ id, quizList }: IProps) {
 	);
 }
 
-export const getServerSideProps = async ({ req, query, params }: GetServerSidePropsContext) => {
+export const getServerSideProps = async ({ query }: GetServerSidePropsContext) => {
 	const no: number = 1;
 	const { ref } = query;
 
