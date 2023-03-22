@@ -102,7 +102,7 @@ export const getServerSideProps = async ({ query }: GetServerSidePropsContext) =
 	const no: number = 1;
 	const ref = query?.ref ? query?.ref : null;
 
-	const id = await await axios.post(
+	const id = await axios.post(
 		`${process.env.NEXT_PUBLIC_DOMAIN}/api/quiz/user`,
 		{
 			no,
@@ -116,16 +116,9 @@ export const getServerSideProps = async ({ query }: GetServerSidePropsContext) =
 		}
 	);
 
-	const quizList = await await axios.get(`${process.env.NEXT_PUBLIC_DOMAIN}/api/quiz/type/${no}`, {
-		auth: {
-			username: process.env.NEXT_PUBLIC_BASIC_USERNAME!,
-			password: process.env.NEXT_PUBLIC_BASIC_PASSWORD!,
-		},
-	});
-
-	if (id?.data?.message === 'success' && quizList?.data?.message === 'success') {
+	if (id?.data?.message === 'success') {
 		return {
-			props: { id: id?.data?.data?.id, quizList: quizList?.data?.data },
+			props: { id: id?.data?.data?.id },
 		};
 	}
 };
