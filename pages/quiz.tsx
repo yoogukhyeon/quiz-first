@@ -122,7 +122,9 @@ export const getServerSideProps = async ({ req, query, params }: GetServerSidePr
 		},
 	});
 
-	return {
-		props: { id: id?.data?.data?.id, quizList: quizList?.data?.data },
-	};
+	if (id?.data?.message === 'success' && quizList?.data?.message === 'success') {
+		return {
+			props: { id: id?.data?.data?.id, quizList: quizList?.data?.data },
+		};
+	}
 };
