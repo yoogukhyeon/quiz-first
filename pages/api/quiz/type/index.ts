@@ -5,14 +5,14 @@ const handler = nc();
 
 /**
  * @swagger
- * /api/quiz/type/{no}:
+ * /api/quiz/type:
  *   get:
  *     security:
  *        - basicAuth: []
  *     tags: [Quiz API]
  *     parameters:
  *        - name: no
- *          in: path
+ *          in: query
  *          description: quiz 번호
  *          required: true
  *          example: 1

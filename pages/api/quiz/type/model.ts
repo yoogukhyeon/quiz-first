@@ -4,6 +4,7 @@ import { Data } from '../types';
 
 const getList = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 	const { no } = req.query;
+
 	try {
 		//mbti list query 찾기
 		let query: string = `
