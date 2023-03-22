@@ -14,8 +14,8 @@ export default function App({ Component, pageProps }: AppProps) {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/favicon.png" />
 			</Head>
-			<GlobalStyles />
 			<QueryClientProvider client={queryClient}>
+				<GlobalStyles />
 				<Component {...pageProps} />
 				<ReactQueryDevtools initialIsOpen={false} position={'bottom-right'} />
 			</QueryClientProvider>
