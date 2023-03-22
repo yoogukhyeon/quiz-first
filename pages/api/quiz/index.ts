@@ -1,5 +1,5 @@
-import nc from "next-connect";
-import { getList, getUserTotal } from "./model";
+import nc from 'next-connect';
+import { getUserTotal } from './model';
 
 const handler = nc();
 

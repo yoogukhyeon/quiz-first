@@ -101,7 +101,6 @@ export const getServerSideProps = async ({ req, query, params }: GetServerSidePr
 	const no: number = 1;
 	const { ref } = query;
 
-	console.log('process.env.NEXT_PUBLIC_DOMAIN :::', process.env.NEXT_PUBLIC_DOMAIN);
 	const id = await axios.post(
 		`${process.env.NEXT_PUBLIC_DOMAIN}/api/quiz/user`,
 		{
@@ -116,16 +115,12 @@ export const getServerSideProps = async ({ req, query, params }: GetServerSidePr
 		}
 	);
 
-	const quizList = await axios.get(`${process.env.NEXT_PUBLIC_DOMAIN}/api/quiz/${no}`, {
+	const quizList = await axios.get(`${process.env.NEXT_PUBLIC_DOMAIN}/api/quiz/type/${no}`, {
 		auth: {
 			username: process.env.NEXT_PUBLIC_BASIC_USERNAME!,
 			password: process.env.NEXT_PUBLIC_BASIC_PASSWORD!,
 		},
 	});
-
-	console.log('quizList :::::');
-	console.log('quizList ::', quizList);
-	console.log('quizList :::::');
 
 	return {
 		props: { id: id?.data?.data?.id, quizList: quizList?.data?.data },
