@@ -40,7 +40,7 @@ export default function Quiz({ id, quizList }: IProps) {
 	useEffect(() => {
 		setData(quizList);
 		setTotal(quizList.length);
-	}, [quizList]);
+	}, []);
 
 	const onClickAnswer = (e: React.MouseEvent<HTMLInputElement>) => {
 		const answer = e.currentTarget.value;
