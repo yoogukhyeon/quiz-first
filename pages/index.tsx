@@ -72,16 +72,16 @@ export default function Home({ refUrl }: IProps) {
           </div>
           <div className="copyright">© Made In YOO GUK HYEON.</div>
 
-          {/* <Button diff={'rending'}>
-						<Link href={`https://www.wtemplete.shop`} passHref target="_blank">
-							플렛폼 랜딩 제작 바로가기
-							<i>
-								<IoArrowForward />
-							</i>
-						</Link>
-					</Button>
+          <Button diff={"rending"}>
+            <Link href={`https://www.wtemplete.shop`} passHref target="_blank">
+              플렛폼 랜딩 제작 바로가기
+              <i>
+                <IoArrowForward />
+              </i>
+            </Link>
+          </Button>
 
-					<Button diff={'commnity'} noSpace={true}>
+          {/* <Button diff={'commnity'} noSpace={true}>
 						<Link href={`https://www.fnfsoccer.com`} passHref target="_blank">
 							축구 커뮤니티 바로가기
 							<i>
