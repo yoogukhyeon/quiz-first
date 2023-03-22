@@ -6,23 +6,8 @@ import { Bottom } from '@/components/layouts/Bottom';
 import { GetServerSidePropsContext } from 'next';
 import QuizeList from '@/components/quiz/QuizeList';
 import axios, { AxiosError, AxiosResponse } from 'axios';
-
-interface QuizList {
-	questionNo: number;
-	question: string;
-	correct_answer: string;
-	answer: string[];
-}
-
-export interface QuizState extends QuizList {
-	answer: string[];
-}
-
-export interface UserChk {
-	correct: boolean;
-	answer: string;
-	correctAnswer: string;
-}
+import { randomArr } from '@/utils/randomArr';
+import { QuizList, QuizState, UserChk } from '@/types/quiz';
 
 interface IProps {
 	id: number;
@@ -125,7 +110,7 @@ export const getServerSideProps = async ({ query }: GetServerSidePropsContext) =
 
 	if (id?.data?.message === 'success' && quizList?.data?.message === 'success') {
 		return {
-			props: { id: id?.data?.data?.id, quizList: quizList?.data?.data },
+			props: { id: id?.data?.data?.id, quizList: randomArr(quizList?.data?.data) },
 		};
 	}
 };

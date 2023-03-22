@@ -48,7 +48,7 @@ const getList = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 					questionNo: quiz[i - 1].qqNo,
 					question: quiz[i - 1].qqTitle,
 					correct_answer: i === quiz.length - 1 ? quiz[i].qcCorrect : quiz[i - 1].qcCorrect,
-					answer,
+					answer: answer.sort(() => Math.random() - 0.5),
 				};
 
 				answer = [];

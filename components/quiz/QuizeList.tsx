@@ -2,9 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { IoArrowForward } from 'react-icons/io5';
 import { ButtonCommon } from '@/styles/common';
-import { QuizState } from '@/pages/quiz';
-import { UserChk } from '@/pages/quiz';
 import { useRouter } from 'next/router';
+import { QuizState, UserChk } from '@/types/quiz';
 interface QuizList {
 	quizList: QuizState;
 	number: number;

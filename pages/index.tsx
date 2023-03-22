@@ -9,7 +9,7 @@ import Clipboard from '@/components/common/Clipboard';
 import { useEffect, useState } from 'react';
 import { useGetTotalQuery } from '@/api';
 import Loading from '@/components/common/Loading';
-
+import Link from 'next/link';
 interface IProps {
 	refUrl: string | null;
 }
@@ -61,16 +61,34 @@ export default function Home({ refUrl }: IProps) {
 									{total} <em>명 참여완료</em>
 								</b>
 							</div>
-							<button onClick={goToStart}>
+							<Button onClick={goToStart}>
 								테스트 하러가기
 								<i>
 									<IoArrowForward />
 								</i>
-							</button>
+							</Button>
 							<Clipboard onClickUrl={copyUrl} />
 						</div>
 					</div>
 					<div className="copyright">© Made In YOO GUK HYEON.</div>
+
+					<Button diff={'rending'}>
+						<Link href={`https://www.wtemplete.shop`} passHref target="_blank">
+							플렛폼 랜딩 제작 바로가기
+							<i>
+								<IoArrowForward />
+							</i>
+						</Link>
+					</Button>
+
+					<Button diff={'commnity'} noSpace={true}>
+						<Link href={`https://www.fnfsoccer.com`} passHref target="_blank">
+							축구 커뮤니티 바로가기
+							<i>
+								<IoArrowForward />
+							</i>
+						</Link>
+					</Button>
 				</ContentWrap>
 			</Main>
 		</>
@@ -162,10 +180,6 @@ const ContentWrap = styled.div`
 				}
 			}
 		}
-
-		button {
-			${ButtonCommon}
-		}
 	}
 
 	.copyright {
@@ -173,5 +187,23 @@ const ContentWrap = styled.div`
 		text-align: center;
 		color: #cbcbcb;
 		font-size: 14px;
+	}
+`;
+
+interface IButton {
+	diff?: string;
+	noSpace?: boolean;
+}
+
+const Button = styled.button<IButton>`
+	${ButtonCommon}
+	background-color: ${(props) => `${props.diff === 'commnity' ? '#85b8cb' : props.diff === 'rending' ? '#1d6a96' : '#09a334'}`};
+	margin: ${(props) => `${props.noSpace && '0'}`};
+
+	> a {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
 	}
 `;
