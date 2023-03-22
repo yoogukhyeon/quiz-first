@@ -6,6 +6,7 @@ import { Bottom } from '@/components/layouts/Bottom';
 import { GetServerSidePropsContext } from 'next';
 import QuizeList from '@/components/quiz/QuizeList';
 import axios, { AxiosError, AxiosResponse } from 'axios';
+import { Data } from '@/mock/Data';
 interface QuizList {
 	questionNo: number;
 	question: string;
@@ -25,10 +26,10 @@ export interface UserChk {
 
 interface IProps {
 	id: number;
-	quizList: QuizList[];
+	quizList?: QuizList[];
 }
 
-export default function Quiz({ id, quizList }: IProps) {
+export default function Quiz({ id = 1 }: IProps) {
 	const [data, setData] = useState<QuizState[]>([]);
 	const [number, setNumber] = useState<number>(0);
 	const [score, setScore] = useState(0);
@@ -38,8 +39,8 @@ export default function Quiz({ id, quizList }: IProps) {
 	const [stepNext, setStepNext] = useState<boolean>(false);
 
 	useEffect(() => {
-		setData(quizList);
-		setTotal(quizList.length);
+		setData(Data);
+		setTotal(Data.length);
 	}, []);
 
 	const onClickAnswer = (e: React.MouseEvent<HTMLInputElement>) => {
@@ -97,34 +98,34 @@ export default function Quiz({ id, quizList }: IProps) {
 	);
 }
 
-export const getServerSideProps = async ({ query }: GetServerSidePropsContext) => {
-	const no: number = 1;
-	const { ref } = query;
+// export const getServerSideProps = async ({ query }: GetServerSidePropsContext) => {
+// 	const no: number = 1;
+// 	const { ref } = query;
 
-	const id = await axios.post(
-		`${process.env.NEXT_PUBLIC_DOMAIN}/api/quiz/user`,
-		{
-			no,
-			referUrl: ref,
-		},
-		{
-			auth: {
-				username: process.env.NEXT_PUBLIC_BASIC_USERNAME!,
-				password: process.env.NEXT_PUBLIC_BASIC_PASSWORD!,
-			},
-		}
-	);
+// 	const id = await axios.post(
+// 		`${process.env.NEXT_PUBLIC_DOMAIN}/api/quiz/user`,
+// 		{
+// 			no,
+// 			referUrl: ref,
+// 		},
+// 		{
+// 			auth: {
+// 				username: process.env.NEXT_PUBLIC_BASIC_USERNAME!,
+// 				password: process.env.NEXT_PUBLIC_BASIC_PASSWORD!,
+// 			},
+// 		}
+// 	);
 
-	const quizList = await axios.get(`${process.env.NEXT_PUBLIC_DOMAIN}/api/quiz/type/${no}`, {
-		auth: {
-			username: process.env.NEXT_PUBLIC_BASIC_USERNAME!,
-			password: process.env.NEXT_PUBLIC_BASIC_PASSWORD!,
-		},
-	});
+// 	const quizList = await axios.get(`${process.env.NEXT_PUBLIC_DOMAIN}/api/quiz/type/${no}`, {
+// 		auth: {
+// 			username: process.env.NEXT_PUBLIC_BASIC_USERNAME!,
+// 			password: process.env.NEXT_PUBLIC_BASIC_PASSWORD!,
+// 		},
+// 	});
 
-	if (id?.data?.message === 'success' && quizList?.data?.message === 'success') {
-		return {
-			props: { id: id?.data?.data?.id, quizList: quizList?.data?.data },
-		};
-	}
-};
+// 	if (id?.data?.message === 'success' && quizList?.data?.message === 'success') {
+// 		return {
+// 			props: { id: id?.data?.data?.id, quizList: quizList?.data?.data },
+// 		};
+// 	}
+// };
