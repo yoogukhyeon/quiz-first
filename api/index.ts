@@ -1,12 +1,20 @@
-import axios, { AxiosError, AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosResponse } from 'axios';
+import { useMutation, useQuery } from 'react-query';
 
-export const quizTotal = async () => {
-  const result = await axios.get(`${process.env.NEXT_PUBLIC_DOMAIN}/api/quiz`, {
-    auth: {
-      username: process.env.NEXT_PUBLIC_BASIC_USERNAME!,
-      password: process.env.NEXT_PUBLIC_BASIC_PASSWORD!,
-    },
-  });
+const useGetTotal = async () => {
+	return await axios.get(`${process.env.NEXT_PUBLIC_DOMAIN}/api/quiz`, {
+		auth: {
+			username: process.env.NEXT_PUBLIC_BASIC_USERNAME!,
+			password: process.env.NEXT_PUBLIC_BASIC_PASSWORD!,
+		},
+	});
+};
 
-  return result?.data?.data;
+export const useGetTotalQuery = () => {
+	return useQuery(['quizTotal'], () => useGetTotal(), {
+		select(data) {
+			return data?.data?.data;
+		},
+		keepPreviousData: true,
+	});
 };

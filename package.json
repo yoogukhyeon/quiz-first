@@ -24,6 +24,7 @@
     "next-swagger-doc": "^0.3.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-query": "^3.39.3",
     "serverless-mysql": "^1.5.4",
     "styled-reset": "^4.4.5",
     "swagger-ui-react": "^4.18.1",
