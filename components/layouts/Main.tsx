@@ -14,4 +14,8 @@ const MainWrap = styled.div`
 	max-width: 375px;
 	margin: 0 auto;
 	padding: 0 10px;
+
+	/* @media screen and (max-width: 580px) {
+		margin: 0 auto;
+	} */
 `;

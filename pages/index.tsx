@@ -109,6 +109,7 @@ const ContentWrap = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	margin: 50px 0;
 
 	> .content {
 		h1 {

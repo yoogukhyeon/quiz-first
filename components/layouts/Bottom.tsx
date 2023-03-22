@@ -33,7 +33,7 @@ const BottomWrap = styled.div`
 		left: 50%;
 		top: 50%;
 		width: 100%;
-		max-width: 375px;
+		max-width: 350px;
 		transform: translate(-50%, -50%);
 		display: flex;
 		justify-content: space-between;

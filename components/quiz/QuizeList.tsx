@@ -63,7 +63,7 @@ export default function QuizeList({ quizList, id, number, onClickAnswer, onClick
 }
 
 const QuizWrap = styled.div`
-	min-height: calc(100vh - 150px);
+	min-height: calc(100vh - 30px);
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
