@@ -6,8 +6,8 @@ const getUserTotal = async (req: NextApiRequest, res: NextApiResponse<Data>) => 
 	try {
 		//mbti list query 찾기
 		let query: string = `
-      select count(*) as totalCnt 
-      from quiz_user;`;
+			select count(*) as totalCnt 
+			from quiz_user;`;
 
 		const values: any[] = [];
 		const totalCnt: any = await mainExcuteQuery({ query, values });

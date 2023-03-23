@@ -14,3 +14,10 @@ export interface UserChk {
 	answer: string;
 	correctAnswer: string;
 }
+
+export interface CommentData {
+	id: number;
+	score: string;
+	writer: string;
+	comment: string;
+}

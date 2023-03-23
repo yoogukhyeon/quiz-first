@@ -8,13 +8,15 @@ import QuizeList from '@/components/quiz/QuizeList';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { randomArr } from '@/utils/randomArr';
 import { QuizList, QuizState, UserChk } from '@/types/quiz';
+import { decrypt } from '@/utils/crypto';
 
 interface IProps {
 	id: number;
 	quizList: QuizList[];
+	no: number;
 }
 
-export default function Quiz({ id, quizList }: IProps) {
+export default function Quiz({ no, id, quizList }: IProps) {
 	const [data, setData] = useState<QuizState[]>([]);
 	const [number, setNumber] = useState<number>(0);
 	const [score, setScore] = useState(0);
@@ -24,7 +26,7 @@ export default function Quiz({ id, quizList }: IProps) {
 	const [stepNext, setStepNext] = useState<boolean>(false);
 
 	useEffect(() => {
-		setData(quizList);
+		setData(randomArr(quizList));
 		setTotal(quizList.length);
 	}, [quizList]);
 
@@ -76,6 +78,7 @@ export default function Quiz({ id, quizList }: IProps) {
 					onClickAnswer={onClickAnswer}
 					score={score}
 					id={id}
+					no={no}
 				/>
 			</Main>
 			<Bottom progress={progress} />
@@ -84,7 +87,7 @@ export default function Quiz({ id, quizList }: IProps) {
 }
 
 export const getServerSideProps = async ({ query }: GetServerSidePropsContext) => {
-	const no: number = 1;
+	const no = query.no;
 	const ref = query?.ref ? query?.ref : null;
 
 	const id = await axios.post(
@@ -110,7 +113,7 @@ export const getServerSideProps = async ({ query }: GetServerSidePropsContext) =
 
 	if (id?.data?.message === 'success' && quizList?.data?.message === 'success') {
 		return {
-			props: { id: id?.data?.data?.id, quizList: randomArr(quizList?.data?.data) },
+			props: { no, id: id?.data?.data?.id, quizList: decrypt(quizList?.data?.data) },
 		};
 	}
 };

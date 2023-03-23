@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { mainExcuteQuery } from '@/config/db';
 import { Data } from '../types';
+import { erypto } from '@/utils/crypto';
 
 const getList = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 	const { no } = req.query;
@@ -58,7 +59,7 @@ const getList = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 			quesPrev = quiz[i].qqNo;
 		}
 
-		res.status(200).json({ message: 'success', data: questionList });
+		res.status(200).json({ message: 'success', data: erypto(questionList) });
 	} catch (err: any) {
 		console.log('Error', err);
 		return res.status(500).json({ message: err.message });

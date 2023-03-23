@@ -1,5 +1,5 @@
 import Main from '@/components/layouts/Main';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/legacy/image';
 import { GetServerSidePropsContext } from 'next';
 import styled from 'styled-components';
@@ -9,12 +9,25 @@ import { IoArrowForward } from 'react-icons/io5';
 import { ButtonCommon } from '@/styles/common';
 import { useRouter } from 'next/router';
 import axios, { AxiosError, AxiosResponse } from 'axios';
+import Comment from '@/components/result/Comment';
+import { Inputs } from './api/quiz/types';
+import { useCommentMutation } from '@/api';
+import CommentList from '@/components/result/CommentList';
+
 interface IProps {
 	score: string;
+	id: number;
 }
 
-export default function Result({ score }: IProps) {
+export default function Result({ score, id }: IProps) {
 	const router = useRouter();
+	const { mutate: commentMutate } = useCommentMutation();
+	const [inputs, setInputs] = useState<Inputs>({
+		writer: '',
+		comment: '',
+	});
+	const writerRef = useRef<HTMLInputElement | any>(null);
+	const commentRef = useRef<HTMLTextAreaElement | any>(null);
 
 	const copyUrl = () => {
 		const url = window.document.location.href;
@@ -23,6 +36,52 @@ export default function Result({ score }: IProps) {
 
 	const goToHome = () => {
 		router.push('/');
+	};
+
+	const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+		const { name, value } = e.target;
+		setInputs({
+			...inputs,
+			[name]: value,
+		});
+	};
+
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+
+		if (inputs.writer === '') {
+			alert('작성자를 입력해주세요.');
+			return writerRef.current.focus();
+		}
+
+		if (inputs.comment === '') {
+			alert('댓글을 입력해주세요.');
+			return commentRef.current.focus();
+		}
+
+		const { comment, writer } = inputs;
+		const data = {
+			id,
+			score,
+			writer,
+			comment: comment.replace(/(?:\r\n|\r|\n)/g, '<br/>'),
+		};
+		commentMutate(data, {
+			onSuccess: (data) => {
+				if (data?.data?.message === 'success') {
+					alert('댓글 작성을 완료했습니다. 감사합니다.');
+					setInputs({
+						writer: '',
+						comment: '',
+					});
+					return;
+				}
+			},
+			onError: (err: any) => {
+				console.error('Error', err);
+				throw new Error(err);
+			},
+		});
 	};
 
 	return (
@@ -43,7 +102,15 @@ export default function Result({ score }: IProps) {
 						{Number(score) < 6 ? <p>공부를 더 하세요....</p> : <p>오호 똑똑하시네요!!!</p>}
 					</div>
 					<Clipboard onClickUrl={copyUrl} />
-
+					<Comment
+						writerRef={writerRef}
+						commentRef={commentRef}
+						score={score}
+						onChange={onChange}
+						handleSubmit={handleSubmit}
+						inputs={inputs}
+					/>
+					<CommentList />
 					<div className="button" onClick={goToHome}>
 						돌아가기
 						<i>
@@ -57,7 +124,7 @@ export default function Result({ score }: IProps) {
 }
 
 export const getServerSideProps = async ({ req, query, params }: GetServerSidePropsContext) => {
-	const no = 1;
+	const no = query?.no;
 	const score: string | string[] | undefined = query?.score ? query?.score : '0';
 	const id = query?.id;
 
@@ -78,7 +145,7 @@ export const getServerSideProps = async ({ req, query, params }: GetServerSidePr
 
 	if (result?.data?.message === 'success') {
 		return {
-			props: { score },
+			props: { score, id },
 		};
 	}
 };
@@ -143,6 +210,7 @@ const ResultWrap = styled.div`
 			line-height: 30px;
 			display: inline-block;
 			position: relative;
+			font-weight: bold;
 
 			::after {
 				z-index: -1;
@@ -186,5 +254,30 @@ const ResultWrap = styled.div`
 	}
 	.button {
 		${ButtonCommon}
+	}
+
+	@media (max-width: 450px) {
+		h2 {
+			font-size: 28px;
+		}
+
+		.scoreNum {
+			> b {
+				font-size: 24px;
+				line-height: 30px;
+			}
+		}
+
+		.desc {
+			> span {
+				font-size: 21px;
+				line-height: 27px;
+			}
+
+			> p {
+				font-size: 24px;
+				line-height: 30px;
+			}
+		}
 	}
 `;
