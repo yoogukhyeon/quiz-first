@@ -90,7 +90,7 @@ export default function Home({ refUrl }: IProps) {
           </div>
           <div className="copyright">
             © Made In YOO GUK HYEON. <br />
-            CONTACT: rnrgus5897@gmail.com.
+            CONTACT: rnrgus5897@gmail.com
           </div>
 
           <Button diff={"commnity"}>

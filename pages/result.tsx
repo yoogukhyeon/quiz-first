@@ -5,7 +5,7 @@ import { GetServerSidePropsContext } from "next";
 import styled from "styled-components";
 import Clipboard from "@/components/common/Clipboard";
 import { clipboard } from "@/utils/clipboard";
-import { IoArrowForward } from "react-icons/io5";
+import { IoArrowForward, IoArrowDownSharp } from "react-icons/io5";
 import { ButtonCommon } from "@/styles/common";
 import { useRouter } from "next/router";
 import axios, { AxiosError, AxiosResponse } from "axios";
@@ -103,8 +103,11 @@ export default function Result({ score, id }: IProps) {
           <div className="desc">
             <span>조언</span>
             {Number(score) < 6 ? <p>공부를 더 하세요....</p> : <p>오호 똑똑하시네요!!!</p>}
+            <p className="commentInfo">
+              <IoArrowDownSharp /> 다양한 의견을 남겨주세요^^
+            </p>
           </div>
-          <Clipboard onClickUrl={copyUrl} />
+
           <Comment
             writerRef={writerRef}
             commentRef={commentRef}
@@ -120,6 +123,7 @@ export default function Result({ score, id }: IProps) {
               <IoArrowForward />
             </i>
           </div>
+          <Clipboard onClickUrl={copyUrl} />
         </ResultWrap>
       </Main>
     </>
@@ -201,7 +205,7 @@ const ResultWrap = styled.div`
     z-index: 2;
     position: relative;
     text-align: center;
-    padding: 20px 0;
+    padding: 10px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -240,6 +244,7 @@ const ResultWrap = styled.div`
       letter-spacing: 0.8;
       word-break: keep-all;
       color: rgb(9, 163, 52);
+      letter-spacing: 0.5px;
 
       ::after {
         z-index: -1;
@@ -251,6 +256,29 @@ const ResultWrap = styled.div`
         width: 100%;
         height: 12px;
         background: rgb(9, 163, 52);
+        opacity: 0.2;
+      }
+    }
+    .commentInfo {
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 22px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #00a7e1;
+      position: relative;
+
+      ::after {
+        z-index: -1;
+        position: absolute;
+        bottom: -3px;
+        left: 0px;
+        content: "";
+        display: block;
+        width: 100%;
+        height: 12px;
+        background: #acd6f2;
         opacity: 0.2;
       }
     }
@@ -278,8 +306,8 @@ const ResultWrap = styled.div`
       }
 
       > p {
-        font-size: 24px;
-        line-height: 30px;
+        font-size: 21px;
+        line-height: 27px;
       }
     }
   }
