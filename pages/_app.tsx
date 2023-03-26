@@ -13,10 +13,10 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="description" content="Sport Quiz" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.png" />
+        <link rel="canonical" href="https://quiz.fnfsoccer.com" />
         <meta property="og:type" content="퀴즈, 상식 퀴즈, 스포츠 퀴즈, 축구 퀴즈" />
-
         <meta property="og:title" content="스포츠 상식 퀴즈"></meta>
-        <meta property="og:url" content="https://quiz.fnfsoccer.com/"></meta>
+        <meta property="og:url" content="https://quiz.fnfsoccer.com"></meta>
         <meta property="og:description" content="에프엔에프, 축구 퀴즈, 스포츠 퀴즈, 상식 퀴즈"></meta>
         <meta
           property="og:image"
@@ -33,11 +33,11 @@ export default function App({ Component, pageProps }: AppProps) {
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
-			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
-			
-			gtag('config', 'G-DDT8EVRHM2');
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            
+            gtag('config', 'G-DDT8EVRHM2');
           `,
         }}
       />
