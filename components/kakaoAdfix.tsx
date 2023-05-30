@@ -25,7 +25,7 @@ function KakaoAdFit() {
 		} else {
 			ins.setAttribute('data-ad-width', '728');
 			ins.setAttribute('data-ad-height', '90');
-			ins.setAttribute('data-ad-unit', '728x90 사이즈의 광고 ID');
+			ins.setAttribute('data-ad-unit', 'DAN-PEaKEuOgdbRO0B46');
 		}
 
 		script.async = true;
