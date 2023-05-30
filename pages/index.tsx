@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import { useGetTotalQuery } from '@/api';
 import Loading from '@/components/common/Loading';
 import Link from 'next/link';
+import KakaoAdfix from '@/components/kakaoAdfix';
 interface IProps {
 	refUrl: string | null;
 }
@@ -20,21 +21,6 @@ export default function Home({ refUrl }: IProps) {
 	const [total, setTotal] = useState<number>(0);
 	const [type, setType] = useState<number>();
 	const [chkType, setChkType] = useState<boolean>(false);
-
-	useEffect(() => {
-		let ins: any = document.createElement('ins');
-		let scr: any = document.createElement('script');
-		ins.className = 'kakao_ad_area';
-		ins.style = 'display:none; width:100%; text-aline: center';
-		scr.async = 'true';
-		scr.type = 'text/javascript';
-		scr.src = '//t1.daumcdn.net/kas/static/ba.min.js';
-		ins.setAttribute('data-ad-width', '300');
-		ins.setAttribute('data-ad-height', '250');
-		ins.setAttribute('data-ad-unit', 'DAN-XLGdJga3UEjro3GI');
-		document.querySelector('.adfit')?.appendChild(ins);
-		document.querySelector('.adfit')?.appendChild(scr);
-	}, []);
 
 	useEffect(() => {
 		setTotal(totalResult?.total);
@@ -67,7 +53,7 @@ export default function Home({ refUrl }: IProps) {
 		<>
 			<Main>
 				<ContentWrap>
-					<div className="adfit"></div>
+					<KakaoAdfix />
 					<div className="content">
 						<h1>
 							나의 축구 지식
