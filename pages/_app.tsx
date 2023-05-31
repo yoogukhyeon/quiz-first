@@ -4,10 +4,28 @@ import type { AppProps } from 'next/app';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import Script from 'next/script';
+import { DefaultSeo } from 'next-seo';
+
+const DEFAULT_SEO = {
+	title: '스포츠 축구 상식 퀴즈',
+	description: '에프엔에프, 축구 퀴즈, 스포츠 퀴즈, 상식 퀴즈, 축구 커뮤니티',
+	canonical: 'https://quiz.fnfsoccer.com',
+	openGraph: {
+		//핸드폰 info 셋팅
+		type: 'website',
+		locale: 'ko_KR',
+		url: 'https://quiz.fnfsoccer.com',
+		title: '스포츠 축구 상식 퀴즈',
+		site_name: '축구 퀴즈',
+	},
+};
+
 export default function App({ Component, pageProps }: AppProps) {
 	const queryClient = new QueryClient();
+
 	return (
 		<>
+			<DefaultSeo {...DEFAULT_SEO} />
 			<Head>
 				<title>Sport Quiz</title>
 				<meta charSet="utf-8" />
@@ -16,8 +34,8 @@ export default function App({ Component, pageProps }: AppProps) {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/favicon.png" />
 				<link rel="canonical" href="https://quiz.fnfsoccer.com" />
-				<meta property="og:type" content="퀴즈, 상식 퀴즈, 스포츠 퀴즈, 축구 퀴즈" />
-				<meta property="og:title" content="스포츠 상식 퀴즈"></meta>
+				<meta property="og:type" content="퀴즈, 상식 퀴즈, 스포츠 퀴즈, 축구 퀴즈, 축구, soccer" />
+				<meta property="og:title" content="스포츠 축구 상식 퀴즈"></meta>
 				<meta property="og:url" content="https://quiz.fnfsoccer.com"></meta>
 				<meta property="og:description" content="에프엔에프, 축구 퀴즈, 스포츠 퀴즈, 상식 퀴즈"></meta>
 				<meta
@@ -35,12 +53,12 @@ export default function App({ Component, pageProps }: AppProps) {
 				strategy="afterInteractive"
 				dangerouslySetInnerHTML={{
 					__html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            
-            gtag('config', 'G-DDT8EVRHM2');
-          `,
+						window.dataLayer = window.dataLayer || [];
+						function gtag(){dataLayer.push(arguments);}
+						gtag('js', new Date());
+						
+						gtag('config', 'G-DDT8EVRHM2');
+					`,
 				}}
 			/>
 			<QueryClientProvider client={queryClient}>

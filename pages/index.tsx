@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
 import { useGetTotalQuery } from '@/api';
 import Loading from '@/components/common/Loading';
 import Link from 'next/link';
-import KakaoAdfix from '@/components/kakaoAdfix';
+import KakaoAdfix from '@/components/adfit/kakaoAdfit';
 interface IProps {
 	refUrl: string | null;
 }
@@ -106,15 +106,6 @@ export default function Home({ refUrl }: IProps) {
 							</i>
 						</Link>
 					</Button>
-
-					{/*     <Button diff={"rending"}  noSpace={true}>
-            <Link href={`https://www.wtemplete.shop`} passHref target="_blank">
-              플렛폼 랜딩 제작 바로가기
-              <i>
-                <IoArrowForward />
-              </i>
-            </Link>
-          </Button> */}
 				</ContentWrap>
 			</Main>
 		</>

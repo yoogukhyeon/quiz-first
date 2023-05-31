@@ -9,7 +9,7 @@ import axios, { AxiosError, AxiosResponse } from 'axios';
 import { randomArr } from '@/utils/randomArr';
 import { QuizList, QuizState, UserChk } from '@/types/quiz';
 import { decrypt } from '@/utils/crypto';
-
+import KakaoAdfix from '@/components/adfit/kakaoAdfit';
 interface IProps {
 	id: number;
 	quizList: QuizList[];
@@ -66,6 +66,10 @@ export default function Quiz({ no, id, quizList }: IProps) {
 
 	return (
 		<>
+			<div style={{ textAlign: 'center' }}>
+				<KakaoAdfix />
+			</div>
+
 			<Top total={total} score={score} number={number} />
 			<Main>
 				<QuizeList

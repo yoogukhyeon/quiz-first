@@ -19,9 +19,9 @@ function KakaoAdFit() {
 		// 윈도우 사이즈에 따라 광고 사이즈 조정(사이즈마다 해당 광고 단위 ID 적용)
 		const winodwSize = window.innerWidth;
 		if (winodwSize < 1024) {
-			ins.setAttribute('data-ad-width', '300');
-			ins.setAttribute('data-ad-height', '250');
-			ins.setAttribute('data-ad-unit', 'DAN-XLGdJga3UEjro3GI');
+			ins.setAttribute('data-ad-width', '320');
+			ins.setAttribute('data-ad-height', '100');
+			ins.setAttribute('data-ad-unit', 'DAN-JAA0nczeTiWed8mA');
 		} else {
 			ins.setAttribute('data-ad-width', '728');
 			ins.setAttribute('data-ad-height', '90');
