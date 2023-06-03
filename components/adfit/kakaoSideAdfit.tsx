@@ -10,30 +10,29 @@ function KakaoSideAdFit() {
 			return;
 		}
 
-		const ins: any = document.createElement('ins');
-		const script: any = document.createElement('script');
-
-		ins.className = 'kakao_ad_area';
-		ins.style = 'display:none; position: absolute; left: 25%; top: 55%; transform: translate(-50%, -50%);';
-
 		// 윈도우 사이즈에 따라 광고 사이즈 조정(사이즈마다 해당 광고 단위 ID 적용)
 		const winodwSize = window.innerWidth;
-		if (winodwSize < 1100) {
-		} else {
+		if (winodwSize > 1100) {
+			const ins: any = document.createElement('ins');
+			const script: any = document.createElement('script');
+
+			ins.className = 'kakao_ad_area';
+			ins.style = 'display:none; position: absolute; left: 25%; top: 55%; transform: translate(-50%, -50%);';
+
 			ins.setAttribute('data-ad-width', '160');
 			ins.setAttribute('data-ad-height', '600');
 			ins.setAttribute('data-ad-unit', 'DAN-4Vft98qcvTXekWGQ');
+
+			script.async = 'true';
+			script.type = 'text/javascript';
+			script.src = '//t1.daumcdn.net/kas/static/ba.min.js';
+
+			document.querySelector('.aside__kakaoAdFit')?.appendChild(ins);
+			document.querySelector('.aside__kakaoAdFit')?.appendChild(script);
+
+			// 광고 로딩 여부 상태 변경
+			adRef.current = true;
 		}
-
-		script.async = 'true';
-		script.type = 'text/javascript';
-		script.src = '//t1.daumcdn.net/kas/static/ba.min.js';
-
-		document.querySelector('.aside__kakaoAdFit')?.appendChild(ins);
-		document.querySelector('.aside__kakaoAdFit')?.appendChild(script);
-
-		// 광고 로딩 여부 상태 변경
-		adRef.current = true;
 	}, []);
 	return (
 		<>
