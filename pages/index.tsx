@@ -11,6 +11,7 @@ import { useGetTotalQuery } from '@/api';
 import Loading from '@/components/common/Loading';
 import Link from 'next/link';
 import KakaoAdfix from '@/components/adfit/kakaoAdfit';
+import KakaoSideAdfit from '@/components/adfit/kakaoSideAdfit';
 interface IProps {
 	refUrl: string | null;
 }
@@ -54,6 +55,9 @@ export default function Home({ refUrl }: IProps) {
 			<Main>
 				<ContentWrap>
 					<KakaoAdfix />
+
+					<KakaoSideAdfit />
+
 					<div className="content">
 						<h1>
 							나의 축구 지식
