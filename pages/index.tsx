@@ -79,7 +79,8 @@ export default function Home({ refUrl }: IProps) {
 						<div>
 							<div className="testNum">
 								<b>
-									{total * 3} <em>명 참여완료</em>
+									{/* {total}  */}
+									10050 <em>명 참여완료</em>
 								</b>
 							</div>
 							<Category>
