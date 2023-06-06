@@ -17,7 +17,7 @@ function KakaoSideAdFit() {
 			const script: any = document.createElement('script');
 
 			ins.className = 'kakao_ad_area';
-			ins.style = 'display:none; position: absolute; left: 25%; top: 55%; transform: translate(-50%, -50%);';
+			ins.style = 'display:none; position: absolute; left: 28%; top: 55%; transform: translate(-50%, -50%);';
 
 			ins.setAttribute('data-ad-width', '160');
 			ins.setAttribute('data-ad-height', '600');

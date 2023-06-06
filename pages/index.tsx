@@ -55,10 +55,8 @@ export default function Home({ refUrl }: IProps) {
 			<Main>
 				<ContentWrap>
 					<KakaoAdfix />
-
-					<KakaoSideAdfit />
-
 					<div className="content">
+						<KakaoSideAdfit />
 						<h1>
 							나의 축구 지식
 							<br />
@@ -134,6 +132,7 @@ const ContentWrap = styled.div`
 	margin: 0 0 50px;
 
 	> .content {
+		position: relative;
 		h1 {
 			color: #252525;
 			font-weight: 900;
