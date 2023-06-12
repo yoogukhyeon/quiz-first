@@ -57,43 +57,45 @@ export default function Home({ refUrl }: IProps) {
 					<KakaoAdfix />
 					<div className="content">
 						<KakaoSideAdfit />
-						<h1>
-							나의 축구 지식
-							<br />
-							<b>수준</b>은 어느정도 일까?
-						</h1>
-
-						<p>
-							지식이란?
-							<br />
-							배워서 이해하고 알아가면서 익히는 지식은 <br /> 같은 분야에 종사하지 않는 한 졸업하면
-							잊는다.
-							<br /> 지식은 시험이 끝나면 두뇌에서 사라진다. 따라서 <br /> 배운 지식을 배운 대로 떠드는
-							것은 개 짖는 소리와 <br /> 다를 바 없다.
-							<br />
-							<br />
-							문제에 답을 고르시면 됩니다.
-						</p>
 						<div>
-							<div className="testNum">
-								<b>
-									{/* {total}  */}
-									10050 <em>명 참여완료</em>
-								</b>
+							<h1>
+								나의 축구 지식
+								<br />
+								<b>수준</b>은 어느정도 일까?
+							</h1>
+
+							<p>
+								지식이란?
+								<br />
+								배워서 이해하고 알아가면서 익히는 지식은 <br /> 같은 분야에 종사하지 않는 한 졸업하면
+								잊는다.
+								<br /> 지식은 시험이 끝나면 두뇌에서 사라진다. 따라서 <br /> 배운 지식을 배운 대로
+								떠드는 것은 개 짖는 소리와 <br /> 다를 바 없다.
+								<br />
+								<br />
+								문제에 답을 고르시면 됩니다.
+							</p>
+							<div>
+								<div className="testNum">
+									<b>
+										{/* {total}  */}
+										10050 <em>명 참여완료</em>
+									</b>
+								</div>
+								<Category>
+									<input type="radio" value={1} id="type1" name="type" onClick={onClickType}></input>
+									<label htmlFor="type1">축구퀴즈1</label>
+									<input type="radio" value={2} id="type2" name="type" onClick={onClickType}></input>
+									<label htmlFor="type2">축구퀴즈2</label>
+								</Category>
+								<Button onClick={goToStart}>
+									테스트 하러가기
+									<i>
+										<IoArrowForward />
+									</i>
+								</Button>
+								<Clipboard onClickUrl={copyUrl} />
 							</div>
-							<Category>
-								<input type="radio" value={1} id="type1" name="type" onClick={onClickType}></input>
-								<label htmlFor="type1">축구퀴즈1</label>
-								<input type="radio" value={2} id="type2" name="type" onClick={onClickType}></input>
-								<label htmlFor="type2">축구퀴즈2</label>
-							</Category>
-							<Button onClick={goToStart}>
-								테스트 하러가기
-								<i>
-									<IoArrowForward />
-								</i>
-							</Button>
-							<Clipboard onClickUrl={copyUrl} />
 						</div>
 					</div>
 					<div className="copyright">
@@ -131,7 +133,11 @@ const ContentWrap = styled.div`
 	align-items: center;
 	margin: 0 0 50px;
 
-	> .content {
+	.content {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 30px;
 		position: relative;
 		h1 {
 			color: #252525;
@@ -201,6 +207,15 @@ const ContentWrap = styled.div`
 					line-height: 18px;
 				}
 			}
+		}
+	}
+
+	@media (max-width: 1100px) {
+		.content {
+			display: block;
+			/* justify-content: center;
+		align-items: center;
+		gap: 30px; */
 		}
 	}
 

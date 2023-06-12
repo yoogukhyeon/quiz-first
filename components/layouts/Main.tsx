@@ -11,7 +11,7 @@ export default function Main({ children }: IProps) {
 
 const MainWrap = styled.div`
 	width: 100%;
-	max-width: 375px;
+	max-width: 565px;
 	margin: 0 auto;
 	padding: 0 10px;
 
