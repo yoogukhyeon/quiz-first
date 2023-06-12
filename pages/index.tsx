@@ -54,7 +54,7 @@ export default function Home({ refUrl }: IProps) {
 		<>
 			<Main>
 				<ContentWrap>
-					<KakaoAdfix />
+					{/* <KakaoAdfix /> */}
 					<div className="content">
 						<KakaoSideAdfit />
 						<h1>
