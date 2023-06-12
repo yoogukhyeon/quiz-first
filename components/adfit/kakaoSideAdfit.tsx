@@ -27,8 +27,8 @@ function KakaoSideAdFit() {
 			script.type = 'text/javascript';
 			script.src = '//t1.daumcdn.net/kas/static/ba.min.js';
 
-			document.querySelector('.aside__kakaoAdFit')?.appendChild(ins);
-			document.querySelector('.aside__kakaoAdFit')?.appendChild(script);
+			document.querySelector('.aside_side_kakaoAdFit')?.appendChild(ins);
+			document.querySelector('.aside_side_kakaoAdFit')?.appendChild(script);
 
 			// 광고 로딩 여부 상태 변경
 			adRef.current = true;
