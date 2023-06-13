@@ -14,18 +14,18 @@ function KakaoAdFit() {
 		const script: any = document.createElement('script');
 
 		ins.className = 'kakao_ad_area';
-		ins.style = 'display:none; width:100%; text-aline: center; margin-bottom: 20px';
+		ins.style = 'display:none; margin-bottom: 15px';
 
 		// 윈도우 사이즈에 따라 광고 사이즈 조정(사이즈마다 해당 광고 단위 ID 적용)
 		const winodwSize = window.innerWidth;
 		if (winodwSize < 1024) {
 			ins.setAttribute('data-ad-width', '320');
 			ins.setAttribute('data-ad-height', '100');
-			ins.setAttribute('data-ad-unit', 'DAN-JAA0nczeTiWed8mA');
+			ins.setAttribute('data-ad-unit', 'DAN-hQWo2eUzWd1M2lWH');
 		} else {
 			ins.setAttribute('data-ad-width', '728');
 			ins.setAttribute('data-ad-height', '90');
-			ins.setAttribute('data-ad-unit', 'DAN-PEaKEuOgdbRO0B46');
+			ins.setAttribute('data-ad-unit', 'DAN-RSJ7Jjur0ZeEEM8Q');
 		}
 
 		script.async = 'true';
