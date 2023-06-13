@@ -17,15 +17,15 @@ interface IProps {
 }
 
 export default function Home({ refUrl }: IProps) {
-	const { data: totalResult, status } = useGetTotalQuery();
+	// const { data: totalResult, status } = useGetTotalQuery();
 	const router = useRouter();
 	const [total, setTotal] = useState<number>(0);
 	const [type, setType] = useState<number>();
 	const [chkType, setChkType] = useState<boolean>(false);
 
-	useEffect(() => {
-		setTotal(totalResult?.total);
-	}, [totalResult]);
+	// useEffect(() => {
+	// 	setTotal(totalResult?.total);
+	// }, [totalResult]);
 
 	const goToStart = () => {
 		if (chkType) {
@@ -46,9 +46,9 @@ export default function Home({ refUrl }: IProps) {
 		setChkType(true);
 	};
 
-	if (status === 'loading') {
-		return <Loading />;
-	}
+	// if (status === 'loading') {
+	// 	return <Loading />;
+	// }
 
 	return (
 		<>
