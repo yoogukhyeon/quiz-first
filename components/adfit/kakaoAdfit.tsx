@@ -14,7 +14,7 @@ function KakaoAdFit() {
 		const script: any = document.createElement('script');
 
 		ins.className = 'kakao_ad_area';
-		ins.style = 'display:none; margin-bottom: 15px';
+		ins.style = 'display:none; margin-bottom: 25px';
 
 		// 윈도우 사이즈에 따라 광고 사이즈 조정(사이즈마다 해당 광고 단위 ID 적용)
 		const winodwSize = window.innerWidth;
