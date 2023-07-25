@@ -21,7 +21,7 @@ function KakaoSideAdFit() {
 
 			ins.setAttribute('data-ad-width', '160');
 			ins.setAttribute('data-ad-height', '600');
-			ins.setAttribute('data-ad-unit', 'DAN-Fr9DEpvXo1Wfsoov');
+			ins.setAttribute('data-ad-unit', 'DAN-NBOZTCNtgbIVmH7B');
 
 			script.async = 'true';
 			script.type = 'text/javascript';
