@@ -25,7 +25,7 @@ function KakaoAdFit() {
 		} else {
 			ins.setAttribute('data-ad-width', '728');
 			ins.setAttribute('data-ad-height', '90');
-			ins.setAttribute('data-ad-unit', 'DAN-9AF6OPX562ZtORrF');
+			ins.setAttribute('data-ad-unit', 'DAN-yeY9FNriChooAqjo');
 		}
 
 		script.async = 'true';
